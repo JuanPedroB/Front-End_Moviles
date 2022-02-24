@@ -1,0 +1,32 @@
+<body>
+  <br>
+  <div>
+    Marca: <input type="text" [(ngModel)]="marca" (keyup)="getMovilesByMarca($event)"> 
+    <button class="botonesConsulta" (click)="verComparacion()">Ver comparacion</button>
+    <button class="botonesConsulta" (click)="anadirAComparar()">Añadir a comparar</button>
+    <button class="botonesConsulta" (click)="verDatosMovil()">Ver datos</button>
+  </div>
+
+  <!--<button (click) = getMovilesByMarca()>Buscar</button> Opcion al pulsar un boton      (click)="verDatosMovil()-->
+  <br>
+  <br>
+  <div class="contenedor" *ngIf="moviles$ | async as movils">
+    <h1 *ngFor="let item of movils.data.moviles; let pos = index;">
+        <div class="movil" [class]="{'movil2': pos === movilActivo}" (click)="cambiaEstado(pos)" (click) ="recogerMovil(item)">
+          <!--(click) = mostrarMovil(item) Para obtener los moviles (click) = cambiaEstado(item) -->
+            <div>
+              <img class="imagen" src="https://cdn.pixabay.com/photo/2016/10/05/17/11/smartphone-1717163_960_720.png">
+            </div>
+            <div class="info">
+              <h1 class="centrar">{{item.marca}}</h1>
+              <h1 class="centrar">{{item.modelo}}</h1>
+              <h1 class="centrar">{{item.precio}}€</h1>
+            </div>
+        </div>
+    </h1>
+  </div>
+</body>
+
+
+
+

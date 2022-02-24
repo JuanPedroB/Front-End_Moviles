@@ -1,0 +1,14 @@
+body{
+	background-color: #ffeead; 
+    padding: 8px;
+}
+.contenedor{
+    margin: auto;
+    margin-bottom: 80px;
+    margin-top: 30px;
+    width: 700px;
+	border: solid 4px #0f4f80;
+	background-color: #80ced6;
+    text-align: center;
+    font-size: 27px;
+}

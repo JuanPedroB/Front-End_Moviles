@@ -1,0 +1,16 @@
+<body>
+    <div class="contenedor" *ngIf="movilesComparados$ | async as movils">
+        <h1 *ngFor="let item of movils.data.moviles">
+            <div class="contenedorMovil">
+            <h1> Marca: {{item.marca}}</h1>
+            <h1> Modelo: {{item.modelo}}</h1>
+            <h1> Pantalla: {{item.pantalla.size}} pulgadas</h1>
+            <h1> Ram: {{item.ram.gb}} gb</h1>
+            <h1> Procesador: {{item.procesador.nombre}}, {{item.procesador.nucleos}} nucleos, {{item.procesador.velocidad}} ghz</h1>
+            <h1> Antutu: {{item.antutu.puntuacion}}</h1>
+            <h1> Bateria: {{item.bateria.mwh}} mhw</h1>
+            <h1> Precio: {{item.precio}}€</h1>
+            </div>
+        </h1>
+    </div>
+</body>
