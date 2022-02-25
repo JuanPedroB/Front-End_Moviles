@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { CustomResponse } from 'src/app/Interface/CustomResponse';
 import { IMovil } from 'src/app/Interface/IMovil';
 import { MovilService } from 'src/app/services/movil.service';
+import { UserAuthenticationService } from 'src/app/services/user-authentication.service';
 
 @Component({
   selector: 'app-ver-datos',
@@ -12,7 +13,7 @@ import { MovilService } from 'src/app/services/movil.service';
 })
 export class VerDatosComponent implements OnInit {
 
-  constructor(private route:ActivatedRoute, private movilService: MovilService) { }
+  constructor(private route:ActivatedRoute, private movilService: MovilService,private userAuthenticationService:UserAuthenticationService) { }
 
   movilElegido$!: Observable<CustomResponse>;
   movil!: IMovil;
@@ -22,7 +23,10 @@ export class VerDatosComponent implements OnInit {
   }
 
   getMovil(){
-    this.movilElegido$ =  this.movilService.verMovilElegido$;
+    if(this.userAuthenticationService.accessGranted){
+      this.movilElegido$ =  this.movilService.verMovilElegido$;
+    }
+  
   }
 
 }
