@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CustomResponse } from '../Interface/CustomResponse';
@@ -16,7 +16,7 @@ movilCompDos:string ="";
 
 movilesMarca$:any;
 
-moviles$ = <Observable<CustomResponse>>this.http.get<CustomResponse>(this.apiUrl+"/moviles/homeDos");
+//moviles$ = <Observable<CustomResponse>>this.http.get<CustomResponse>(this.apiUrl+"/moviles/homeDos");
 verMovilElegido$:any;
 
 hayDosMoviles:boolean = false;
@@ -46,6 +46,16 @@ seleccionarMovilesComparados(marca:string){
     this.hayDosMoviles = true;
   }
   
+}
+
+public moviles$(access_token:string):Observable<CustomResponse>{
+  let options = {
+    headers: new HttpHeaders({
+      'Authorization': 'Bearer' + ' ' + access_token,
+    }),
+    withCredentials: true,
+  };
+  return this.http.get<CustomResponse>(this.apiUrl + '/moviles/homeDos',options);
 }
 
 }

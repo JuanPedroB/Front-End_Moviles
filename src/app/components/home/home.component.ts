@@ -4,6 +4,7 @@ import { MovilService } from 'src/app/services/movil.service';
 import { IMovil } from 'src/app/Interface/IMovil';
 import { Observable } from 'rxjs';
 import { CustomResponse } from 'src/app/Interface/CustomResponse';
+import { UserAuthenticationService } from 'src/app/services/user-authentication.service';
 
 @Component({
   selector: 'app-home',
@@ -20,14 +21,19 @@ export class HomeComponent implements OnInit {
 
   moviles$!: Observable<CustomResponse>;
 
-  constructor(private movilService: MovilService, private route: Router) { }
+  constructor(private movilService: MovilService, private route: Router,private userAuthenticationService:UserAuthenticationService) { 
+    userAuthenticationService.authenticate("jose","321");
+  }
 
   ngOnInit(): void {
-    this.getMoviles();
+    console.log("esto es el oninit")
+    setTimeout(()=> this.getMoviles(),500);
   }
   
   getMoviles(){
-    this.moviles$ = this.movilService.moviles$;
+    if(this.userAuthenticationService.accessGranted){
+      this.moviles$ = this.movilService.moviles$(this.userAuthenticationService.accessToken);
+    }
   }
   recogerMovil(item:IMovil){
     this.movilSeleccionado = item;
