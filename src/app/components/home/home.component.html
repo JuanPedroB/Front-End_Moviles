@@ -7,9 +7,11 @@
     <button class="botonesConsulta" (click)="verDatosMovil()">Ver datos</button>
   </div>
 
+
   <!--<button (click) = getMovilesByMarca()>Buscar</button> Opcion al pulsar un boton      (click)="verDatosMovil()-->
   <br>
   <br>
+  
   <div class="contenedor" *ngIf="moviles$ | async as movils">
     <h1 *ngFor="let item of movils.data.moviles; let pos = index;">
         <div class="movil" [class]="{'movil2': pos === movilActivo}" (click)="cambiaEstado(pos)" (click) ="recogerMovil(item)">
