@@ -38,8 +38,10 @@ export class HomeComponent implements OnInit {
     }
   }
   recogerMovil(item:IMovil){
+    if(this.userAuthenticationService.accessGranted){
     this.movilSeleccionado = item;
-    this.movilService.getMovilSeleccionado(this.movilSeleccionado.marca);
+    this.movilService.getMovilSeleccionado(this.movilSeleccionado.marca,this.userAuthenticationService.accessToken);
+    }
   }
   cambiaEstado(pos: number) {
     if(this.movilActivo == pos){
@@ -60,11 +62,13 @@ export class HomeComponent implements OnInit {
   }
 
   getMovilesByMarca(event: KeyboardEvent){
+    if(this.userAuthenticationService.accessGranted){
     if(this.marca != ""){
-      this.moviles$ = this.movilService.getMarca(this.marca.toUpperCase());
+      this.moviles$ = this.movilService.getMarca(this.marca.toUpperCase(),this.userAuthenticationService.accessToken);
     }else{
       this.getMoviles();
     }
+  }
   }
 
   anadirAComparar(){
