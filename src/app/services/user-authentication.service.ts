@@ -22,11 +22,9 @@ authenticate(username: string, password: string) {
   this.http.post<ResponseToken>(this.apiUrl, null, options) 
   .subscribe(
     (respond)=>{
-      console.log("asociando un token");
       this.accessToken =respond.access_token;
       this.refreshToken=respond.refresh_token;
       this.accessGranted=true;
-     // console.log(this.accessToken)
     });
 }
 }

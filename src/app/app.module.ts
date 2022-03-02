@@ -8,13 +8,15 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { VerDatosComponent } from './components/ver-datos/ver-datos.component';
 import { VercomparacionComponent } from './components/vercomparacion/vercomparacion.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     VerDatosComponent,
-    VercomparacionComponent
+    VercomparacionComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
