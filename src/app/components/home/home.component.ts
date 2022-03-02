@@ -22,12 +22,14 @@ export class HomeComponent implements OnInit {
   moviles$!: Observable<CustomResponse>;
 
   constructor(private movilService: MovilService, private route: Router,private userAuthenticationService:UserAuthenticationService) { 
-    userAuthenticationService.authenticate("jose","321");
+    
   }
 
   ngOnInit(): void {
-    console.log("esto es el oninit")
-    setTimeout(()=> this.getMoviles(),66);
+    
+    if(this.userAuthenticationService.accessGranted){
+      setTimeout(()=> this.getMoviles(),66);
+    }
   }
   
   getMoviles(){
